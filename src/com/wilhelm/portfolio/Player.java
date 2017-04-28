@@ -18,7 +18,7 @@ public class Player {
 	private final String CARD_LIST_SUFFIX = ".txt";
 	private ArrayList<Card> hand;
 	private ArrayList<Card> deck;
-	private ArrayList<Card> discard;
+	private ArrayList<Card> unused;
 	
 	public Player(int pNum, String name, int life) {
 		this.pNum = pNum;
@@ -26,7 +26,7 @@ public class Player {
 		this.life = life;
 		this.hand = new ArrayList<Card>();	// Defaults
 		this.deck = new ArrayList<Card>();
-		this.discard = new ArrayList<Card>();
+		this.unused = new ArrayList<Card>();
 		readCards();	// Other Methods
 	}
 	
@@ -36,7 +36,7 @@ public class Player {
 	private void setName(String name) { this.name = name; }
 	private void setHand(ArrayList<Card> hand) { this.hand = hand; }
 	private void setDeck(ArrayList<Card> deck) { this.deck = deck; }
-	private void setDiscard(ArrayList<Card> discard) { this.discard = discard; }
+	private void setDiscard(ArrayList<Card> unused) { this.unused = unused; }
 
 	// Getters
 	public int getPlayerNum() { return pNum; }
@@ -44,7 +44,7 @@ public class Player {
 	public String getName() { return name; }
 	public ArrayList<Card> getHand() { return hand; }
 	public ArrayList<Card> getDeck() { return deck; }
-	public ArrayList<Card> getDiscard() { return discard; }
+	public ArrayList<Card> getDiscard() { return unused; }
 	
 	// Other Methods
 	private void readCards() {
