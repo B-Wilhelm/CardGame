@@ -21,9 +21,9 @@ public class Game {
 	private JFrame frame;
 	private DrawPanel draw;
 	private ArrayList<Panel> coord;
-	private int SLOT_WIDTH = 0;
-	private int SLOT_HEIGHT = 0;
+	private int SLOT_WIDTH = 0, SLOT_HEIGHT = 0, fps;
 	private final int alpha = 75;
+	private final String BOOST = "Boost", MAIN = "Hero", DECK = "Deck", UNUSED = "Unused";
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	public Game() {
@@ -31,17 +31,41 @@ public class Game {
         setFrame();
         fillCoord();
 		
-		long last = System.nanoTime();
-		long delta = 0;
+        int frameCount = 0;
+		long now, last = System.nanoTime(), lastFrameTime = 0, updateLength = 0;
+		double delta = 0;
+		int i = 0;
+		final int TARGET_FPS = 60;
+		final long OPTIMAL_TIME = 1000000000/TARGET_FPS;
+		fps = TARGET_FPS;
+		
 		while(running) {
-		    long now = System.nanoTime();
-		    delta += ((now-last)/16666666);
+		    now = System.nanoTime();
+		    updateLength = now-last;
 		    last = now;
-		    if(delta >= 1) {
-		    	draw();
-		    	delta--;
+		    delta = updateLength / ((double)OPTIMAL_TIME);
+		    lastFrameTime += updateLength;
+		    frameCount++;
+		    
+		    if(lastFrameTime >= (1000000000)) {
+		    	fps = frameCount;
+		    	lastFrameTime = 0;
+		    	frameCount = 0;
 		    }
+		    
+		    update(delta);
+	    	draw();
+	    	
+		    try {
+				Thread.sleep( (last-System.nanoTime() + OPTIMAL_TIME) / 1000000 );
+			}
+		    catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
+	}
+	private void update(double delta) {
+		
 	}
 	private void draw() {
 		draw.repaint();
@@ -84,6 +108,8 @@ public class Game {
 			Color green = new Color(0, 255, 0, alpha);
 			Color violet = new Color(255, 0, 255, alpha);
 			
+			g.clearRect(0, 0, getWidth(), getHeight());
+			
 			g.setColor(red);
 			g.fillRect(coord.get(1).getX(),coord.get(1).getY(),SLOT_WIDTH,SLOT_HEIGHT);
 
@@ -105,13 +131,14 @@ public class Game {
 			
 			
 			g.setColor(Color.black);
-			g.drawString("Primary", coord.get(1).getX()+SLOT_WIDTH/2-m.stringWidth("Primary")/2, coord.get(1).getY()+SLOT_HEIGHT+m.getHeight());
-			g.drawString("Boost", coord.get(0).getX()+SLOT_WIDTH/2-m.stringWidth("Boost")/2, coord.get(0).getY()+SLOT_HEIGHT+m.getHeight());
-			g.drawString("Boost", coord.get(2).getX()+SLOT_WIDTH/2-m.stringWidth("Boost")/2, coord.get(2).getY()+SLOT_HEIGHT+m.getHeight());
-			g.drawString("Discard", coord.get(3).getX(), coord.get(3).getY()-10);
-			g.drawString("Deck", coord.get(4).getX()+SLOT_WIDTH-m.stringWidth("Deck"), coord.get(4).getY()-10);
-			g.drawString("Deck", coord.get(5).getX(), coord.get(5).getY()-10);
-			g.drawString("Discard", coord.get(6).getX()+SLOT_WIDTH-m.stringWidth("Discard"), coord.get(6).getY()-10);
+			g.drawString(fps+"", 10, draw.getHeight()-10);
+			g.drawString(MAIN, coord.get(1).getX()+SLOT_WIDTH/2-m.stringWidth(MAIN)/2, coord.get(1).getY()+SLOT_HEIGHT+m.getHeight());
+			g.drawString(BOOST, coord.get(0).getX()+SLOT_WIDTH/2-m.stringWidth(BOOST)/2, coord.get(0).getY()+SLOT_HEIGHT+m.getHeight());
+			g.drawString(BOOST, coord.get(2).getX()+SLOT_WIDTH/2-m.stringWidth(BOOST)/2, coord.get(2).getY()+SLOT_HEIGHT+m.getHeight());
+			g.drawString(DECK, coord.get(4).getX()+SLOT_WIDTH-m.stringWidth(DECK), coord.get(4).getY()-10);
+			g.drawString(DECK, coord.get(5).getX(), coord.get(5).getY()-10);
+			g.drawString(UNUSED, coord.get(3).getX(), coord.get(3).getY()-10);
+			g.drawString(UNUSED, coord.get(6).getX()+SLOT_WIDTH-m.stringWidth(UNUSED), coord.get(6).getY()-10);
 		}
 	}
 	
@@ -123,6 +150,8 @@ public class Game {
 		}
 		public int getX() { return x; }
 		public int getY() { return y; }
+		public void setX(int x) { this.x = x; }
+		public void setY(int y) { this.y = y; }
 	}
 	
 	class Input extends KeyAdapter {
@@ -131,8 +160,7 @@ public class Game {
             int keyCode = event.getKeyCode();
             if (keyCode == KeyEvent.VK_ESCAPE)
             {
-            	System.out.println("boi");
-               frame.dispose();
+            	running = false;
             }
         }
 
