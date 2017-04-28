@@ -21,20 +21,23 @@ public class Game {
 	private JFrame frame;
 	private DrawPanel draw;
 	private ArrayList<Panel> coord;
-	private int SLOT_WIDTH = 0, SLOT_HEIGHT = 0, fps;
+	private int SLOT_WIDTH = 0, SLOT_HEIGHT = 0, fps, frameCount, playerTurn;
 	private final int alpha = 75;
 	private final String BOOST = "Boost", MAIN = "Hero", DECK = "Deck", UNUSED = "Unused";
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	private long lastFrameTime = 0, updateLength = 0;
 	
 	public Game() {
 		coord = new ArrayList<Panel>();
         setFrame();
         fillCoord();
 		
-        int frameCount = 0;
-		long now, last = System.nanoTime(), lastFrameTime = 0, updateLength = 0;
+        playerTurn = 0;
+        frameCount = 0;
+        lastFrameTime = 0;
+        frameCount = 0;
+		long now, last = System.nanoTime();
 		double delta = 0;
-		int i = 0;
 		final int TARGET_FPS = 60;
 		final long OPTIMAL_TIME = 1000000000/TARGET_FPS;
 		fps = TARGET_FPS;
@@ -44,20 +47,13 @@ public class Game {
 		    updateLength = now-last;
 		    last = now;
 		    delta = updateLength / ((double)OPTIMAL_TIME);
-		    lastFrameTime += updateLength;
-		    frameCount++;
 		    
-		    if(lastFrameTime >= (1000000000)) {
-		    	fps = frameCount;
-		    	lastFrameTime = 0;
-		    	frameCount = 0;
-		    }
-		    
+		    fpsCount();
 		    update(delta);
 	    	draw();
 	    	
 		    try {
-				Thread.sleep( (last-System.nanoTime() + OPTIMAL_TIME) / 1000000 );
+				Thread.sleep((last-System.nanoTime() + OPTIMAL_TIME) / 1000000 );
 			}
 		    catch (InterruptedException e) {
 				e.printStackTrace();
@@ -65,10 +61,25 @@ public class Game {
 		}
 	}
 	private void update(double delta) {
-		
+		if(playerTurn == 1) {
+			
+		}
+		else {
+			
+		}
 	}
 	private void draw() {
 		draw.repaint();
+	}
+	private void fpsCount() {
+		lastFrameTime += updateLength;
+	    frameCount++;
+	    
+	    if(lastFrameTime >= (1000000000)) {
+	    	fps = frameCount;
+	    	lastFrameTime = 0;
+	    	frameCount = 0;
+	    }
 	}
 	private void fillCoord() {
 		int height = draw.getHeight()/2-SLOT_HEIGHT/2;
@@ -107,6 +118,8 @@ public class Game {
 			Color red = new Color(255, 0, 0, alpha);
 			Color green = new Color(0, 255, 0, alpha);
 			Color violet = new Color(255, 0, 255, alpha);
+			String playerString = "Player " + (playerTurn+1) + "'s Turn";
+			String otherPlayerString = "Player " + (Math.abs(playerTurn-1)+1) + " is Waiting";
 			
 			g.clearRect(0, 0, getWidth(), getHeight());
 			
@@ -132,6 +145,8 @@ public class Game {
 			
 			g.setColor(Color.black);
 			g.drawString(fps+"", 10, draw.getHeight()-10);
+			g.drawString(playerString, draw.getWidth()/2-m.stringWidth(playerString)/2, coord.get(3).getY()+SLOT_HEIGHT);
+			g.drawString(otherPlayerString, draw.getWidth()/2-m.stringWidth(otherPlayerString)/2, coord.get(5).getY());
 			g.drawString(MAIN, coord.get(1).getX()+SLOT_WIDTH/2-m.stringWidth(MAIN)/2, coord.get(1).getY()+SLOT_HEIGHT+m.getHeight());
 			g.drawString(BOOST, coord.get(0).getX()+SLOT_WIDTH/2-m.stringWidth(BOOST)/2, coord.get(0).getY()+SLOT_HEIGHT+m.getHeight());
 			g.drawString(BOOST, coord.get(2).getX()+SLOT_WIDTH/2-m.stringWidth(BOOST)/2, coord.get(2).getY()+SLOT_HEIGHT+m.getHeight());
