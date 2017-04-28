@@ -123,18 +123,20 @@ public class Game {
 			
 			g.clearRect(0, 0, getWidth(), getHeight());
 			
-			g.setColor(red);
-			g.fillRect(coord.get(1).getX(),coord.get(1).getY(),SLOT_WIDTH,SLOT_HEIGHT);
-
-			g.setColor(blue);
-			g.fillRect(coord.get(0).getX(),coord.get(0).getY(),SLOT_WIDTH,SLOT_HEIGHT);
-			g.fillRect(coord.get(2).getX(),coord.get(2).getY(),SLOT_WIDTH,SLOT_HEIGHT);
-			
 			g.setColor(Color.gray);
+			g.drawRect(coord.get(1).getX(),coord.get(1).getY(),SLOT_WIDTH,SLOT_HEIGHT);
+			g.drawRect(coord.get(0).getX(),coord.get(0).getY(),SLOT_WIDTH,SLOT_HEIGHT);
+			g.drawRect(coord.get(2).getX(),coord.get(2).getY(),SLOT_WIDTH,SLOT_HEIGHT);
 			g.drawRect(coord.get(3).getX(),coord.get(3).getY(),SLOT_WIDTH,SLOT_HEIGHT);
 			g.drawRect(coord.get(4).getX(),coord.get(4).getY(),SLOT_WIDTH,SLOT_HEIGHT);
 			g.drawRect(coord.get(5).getX(),coord.get(5).getY(),SLOT_WIDTH,SLOT_HEIGHT);
 			g.drawRect(coord.get(6).getX(),coord.get(6).getY(),SLOT_WIDTH,SLOT_HEIGHT);
+			
+			g.setColor(red);
+			g.fillRect(coord.get(1).getX()+1,coord.get(1).getY()+1,SLOT_WIDTH-1,SLOT_HEIGHT-1);
+			g.setColor(blue);
+			g.fillRect(coord.get(0).getX()+1,coord.get(0).getY()+1,SLOT_WIDTH,SLOT_HEIGHT-1);
+			g.fillRect(coord.get(2).getX()+1,coord.get(2).getY()+1,SLOT_WIDTH,SLOT_HEIGHT-1);
 			g.setColor(green);
 			g.fillRect(coord.get(3).getX()+1,coord.get(3).getY()+1,SLOT_WIDTH-1,SLOT_HEIGHT-1);
 			g.fillRect(coord.get(6).getX()+1,coord.get(6).getY()+1,SLOT_WIDTH-1,SLOT_HEIGHT-1);
