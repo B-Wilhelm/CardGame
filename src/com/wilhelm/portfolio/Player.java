@@ -52,6 +52,7 @@ public class Player {
 		Charset c = Charset.forName("US-ASCII");
 		String[] parts = {"","","","","",""};	// Size 6
 		int i, iMod;
+		deck.add(new Card());
 		
 		try (BufferedReader r = Files.newBufferedReader(p, c)) {
 			iMod = 0;
