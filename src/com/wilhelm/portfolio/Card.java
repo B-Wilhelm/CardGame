@@ -7,6 +7,14 @@ package com.wilhelm.portfolio;
 public class Card {
 	private int cost, val;
 	private String name, type, effect;
+	
+	public Card() {
+		this.name = "";	// Args
+		this.type = "";
+		this.cost = 0;
+		this.effect = "";
+		this.val = 0;
+	}
 
 	public Card(String name, String type, int cost, int val) {
 		this.name = name;	// Args

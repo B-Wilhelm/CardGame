@@ -36,7 +36,7 @@ public class Player {
 	private void setName(String name) { this.name = name; }
 	private void setHand(ArrayList<Card> hand) { this.hand = hand; }
 	private void setDeck(ArrayList<Card> deck) { this.deck = deck; }
-	private void setDiscard(ArrayList<Card> unused) { this.unused = unused; }
+	private void setUnused(ArrayList<Card> unused) { this.unused = unused; }
 
 	// Getters
 	public int getPlayerNum() { return pNum; }
@@ -44,7 +44,7 @@ public class Player {
 	public String getName() { return name; }
 	public ArrayList<Card> getHand() { return hand; }
 	public ArrayList<Card> getDeck() { return deck; }
-	public ArrayList<Card> getDiscard() { return unused; }
+	public ArrayList<Card> getUnused() { return unused; }
 	
 	// Other Methods
 	private void readCards() {

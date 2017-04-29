@@ -13,6 +13,5 @@ public class Test {
 //		System.out.println(p.getLife());
 		
 		Game g = new Game();
-		
 	}
 }
