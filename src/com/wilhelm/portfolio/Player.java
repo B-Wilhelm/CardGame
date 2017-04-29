@@ -61,7 +61,7 @@ public class Player {
 		    	iMod = i%5;
 		    	parts[iMod] = line;
 		    	if(iMod == 4) {
-		    		if(parts[1].equals("Main")) {	// Checks for null effect attribute; Prevents "Main" cards from displaying a null effect
+		    		if(parts[1].equals("Hero")) {	// Checks for null effect attribute; Prevents "Main" cards from displaying a null effect
 		    			deck.add(new Card(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[4])));
 		    		}
 		    		else {
@@ -75,6 +75,12 @@ public class Player {
 		    }
 		} catch (Exception x) {
 		    System.err.format("Exception: %s%n", x);
+		}
+	}
+	
+	protected void drawCard() {
+		if(deck.size()>0) {
+			deck.remove(0);
 		}
 	}
 }

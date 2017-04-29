@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Field {
 	private ArrayList<Card> play;
-	private final int[] fieldCoord = {0,0,10,10,0,0};
 	private ArrayList<Player> p = new ArrayList<Player>();
 	private final String PLAYER_1 = "Brett";
 	private final String PLAYER_2 = "TJ";
