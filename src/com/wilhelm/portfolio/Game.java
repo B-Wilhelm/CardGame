@@ -307,7 +307,6 @@ public class Game {
             	running = false;
             }
         }
-
         @Override
         public void keyReleased(KeyEvent event) {
         }
