@@ -23,8 +23,8 @@ public class Field {
 	}
 	
 	// Setters
-	private void setPlay(ArrayList<Card> play) { this.play = play; }
-	private void setPlayers() { this.p = p; }
+//	private void setPlay(ArrayList<Card> play) { this.play = play; }
+//	private void setPlayers() { this.p = p; }
 	
 	// Getters
 	public ArrayList<Card> getPlay() { return play; }

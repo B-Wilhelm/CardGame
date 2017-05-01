@@ -25,7 +25,7 @@ import javax.swing.JPanel;
 
 public class Game {
 	private final int alpha = 127, PLAY_SIZE = 3;
-	private final String BOOST = "Boost", BOOST1 = "P1 Boost", BOOST2 = "P2 Boost", MAIN = "Hero", DECK = "Deck", UNUSED = "Unused";
+	private final String BOOST1 = "P1 Boost", BOOST2 = "P2 Boost", MAIN = "Hero", DECK = "Deck", UNUSED = "Unused";
 	private boolean running = true, hasDrawn = false, hasPlayed = false;
 	private JFrame frame;
 	private DrawPanel draw;

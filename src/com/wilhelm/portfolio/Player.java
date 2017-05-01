@@ -31,12 +31,12 @@ public class Player {
 	}
 	
 	// Setters
-	private void setPlayerNum(int pNum) { this.pNum = pNum; }
+//	private void setPlayerNum(int pNum) { this.pNum = pNum; }
 	protected void setLife(int life) { this.life = life; }
-	private void setName(String name) { this.name = name; }
-	private void setHand(ArrayList<Card> hand) { this.hand = hand; }
-	private void setDeck(ArrayList<Card> deck) { this.deck = deck; }
-	private void setUnused(ArrayList<Card> unused) { this.unused = unused; }
+//	private void setName(String name) { this.name = name; }
+//	private void setHand(ArrayList<Card> hand) { this.hand = hand; }
+//	private void setDeck(ArrayList<Card> deck) { this.deck = deck; }
+//	private void setUnused(ArrayList<Card> unused) { this.unused = unused; }
 
 	// Getters
 	public int getPlayerNum() { return pNum; }

@@ -36,12 +36,12 @@ public class Card {
 	}
 	
 	// Setters
-	private void setName(String name) { this.name = name; }
-	private void setType(String type) { this.type = type; }
-	private void setCost(int hp) { this.hp = hp; }
-	private void setEffect(String effect) { this.effect = effect; }
-	private void setVal(int val) { this.val = val; }
-	private void setOwner(int owner) { this.owner = owner+""; }
+//	private void setName(String name) { this.name = name; }
+//	private void setType(String type) { this.type = type; }
+//	private void setCost(int hp) { this.hp = hp; }
+//	private void setEffect(String effect) { this.effect = effect; }
+//	private void setVal(int val) { this.val = val; }
+//	private void setOwner(int owner) { this.owner = owner+""; }
 	
 	// Getters
 	public String getName() { return name; }
