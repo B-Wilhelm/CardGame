@@ -32,7 +32,7 @@ public class Player {
 	
 	// Setters
 	private void setPlayerNum(int pNum) { this.pNum = pNum; }
-	private void setLife(int life) { this.life = life; }
+	protected void setLife(int life) { this.life = life; }
 	private void setName(String name) { this.name = name; }
 	private void setHand(ArrayList<Card> hand) { this.hand = hand; }
 	private void setDeck(ArrayList<Card> deck) { this.deck = deck; }
@@ -62,10 +62,10 @@ public class Player {
 		    	parts[iMod] = line;
 		    	if(iMod == 4) {
 		    		if(parts[1].equals("Hero")) {	// Checks for null effect attribute; Prevents "Main" cards from displaying a null effect
-		    			deck.add(new Card(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[4])));
+		    			deck.add(new Card(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[4]), pNum+""));
 		    		}
 		    		else {
-		    			deck.add(new Card(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3], Integer.parseInt(parts[4])));
+		    			deck.add(new Card(parts[0], parts[1], Integer.parseInt(parts[2]), parts[3], Integer.parseInt(parts[4]), pNum+""));
 		    		}
 		    		r.readLine();
 		    	}
@@ -79,8 +79,12 @@ public class Player {
 	}
 	
 	protected void drawCard() {
-		if(deck.size()>0) {
+		if(deck.size() > 0) {
 			deck.remove(0);
 		}
+	}
+	
+	protected void takeDamage(int damage) {
+		life -= damage;
 	}
 }

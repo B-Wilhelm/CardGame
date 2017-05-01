@@ -24,11 +24,18 @@ public class Field {
 	
 	// Setters
 	private void setPlay(ArrayList<Card> play) { this.play = play; }
+	private void setPlayers() { this.p = p; }
 	
 	// Getters
 	public ArrayList<Card> getPlay() { return play; }
 	public ArrayList<Player> getPlayers() { return p; }
 	
 	// Other Methods
-	
+	protected void swapPlayers() {
+		Card temp;
+		
+		temp = play.get(0);
+		play.set(0, play.get(2));
+		play.set(2, temp);
+	}
 }

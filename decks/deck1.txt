@@ -18,13 +18,13 @@ null
 
 Test 4
 Boost
-0
+1
 Draw
 1
 
 Test 5
 Hero
-0
+1
 null
 0
 
@@ -42,7 +42,7 @@ null
 
 Test 8
 Boost
-0
+1
 Curse
 1
 
@@ -90,7 +90,7 @@ Bless
 
 Test 16
 Boost
-0
+1
 Bless
 1
 
